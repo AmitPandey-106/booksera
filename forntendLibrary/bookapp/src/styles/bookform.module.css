@@ -1,0 +1,196 @@
+.container {
+  background-color: #dfecf6;
+  padding: 45px 195px 85px;
+  width: 100%;
+  }
+
+  .card {
+    background-color: white;
+    margin: 0px -50px;
+    padding-top: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 39.2);
+  }
+  
+  .tp {
+    background-color: #93ccf7;
+    height: 150px;
+  }
+
+  .tp h2{
+    position: relative;
+    top: 45%;
+    text-align: left;
+    padding-left: 45px;
+
+  }
+
+  .container form {
+    max-width: 1000px;
+    padding: 20px 45px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+
+  .user_info {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-top: -70px;
+    padding: 10px;
+  }
+  
+  .title {
+      text-align: left;
+      color: #333;
+      margin-top: 15px;
+      margin-bottom: 10px;
+      margin-left: 25px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .label {
+    font-size: 14px;
+    color: #555;
+    text-align: left;
+    margin-top: 15px;
+  }
+  
+  .input[type="text"],
+  .input[type="number"],
+  .input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 15px;
+      background-color: rgb(244, 242, 242);
+      color: black;
+
+  }
+  
+  .button {
+    padding: 12px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #45a049;
+  }
+  
+
+  @media (min-width: 601px) and (max-width: 1024px) {
+    .body {
+      padding: 20px;
+    }
+  
+    .card {
+      margin: 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+  
+    .user_info {
+      margin-top: -83px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .tittle {
+      margin-left: 15px;
+    }
+
+  .input[type="text"],
+  .input[type="number"],
+  .input[type="file"]{
+    font-size: 14px;
+  }
+    
+  }
+
+  @media (max-width: 600px) {
+    .body {
+      padding: 65px;
+    }
+  
+    .user_info {
+      flex-direction: column;
+      gap: 0;
+      margin-top: -80px;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1250px){
+    .body {
+      padding: 65px;
+    }
+  
+    .user_info {
+      flex-direction: column;
+      gap: 0;
+      margin-top: -80px;
+    }
+  }
+
+  .popupOverlay {
+    position: fixed; /* Stays on top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+    backdrop-filter: blur(5px); /* Blurred background effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensures it stays on top */
+  }
+  
+  .popupContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+    
+    /* Auto size to fit animation */
+    min-width: 70px;
+    min-height: 70px;
+    max-width: 50%;
+    max-height: 50%;
+    overflow: hidden; /* Prevents content overflow */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+
+  
+  .popupContent p {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  

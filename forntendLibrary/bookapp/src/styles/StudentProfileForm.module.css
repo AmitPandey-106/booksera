@@ -1,0 +1,231 @@
+/* General styles for larger screens (default) */
+.body {
+  background-color: #dfecf6;
+  padding: 45px 195px 85px;
+  min-height: 100vh;
+}
+
+.card {
+  background-color: white;
+  margin: 0px -50px;
+  padding-top: 5px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 39.2);
+}
+
+.tp {
+  background-color: #93ccf7;
+  color: #93ccf7;
+  height: 150px;
+}
+
+.body form {
+  max-width: 1000px;
+  padding: 20px 45px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.first, .second {
+  background-color: white;
+  border-radius: 5px;
+  padding: 0px 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+}
+
+.first {
+  margin-top: -80px;
+  margin-right: 225px;
+  margin-left: -13px;
+}
+
+.first p, .second p {
+  text-align: left;
+  margin-bottom: -6px;
+  margin-top: 20px; 
+  width: 430px;
+}
+
+.second {
+  margin-top: -80px;
+  margin-left: -220px;
+}
+
+.user_info {
+  display: flex;
+  gap: 20px;
+}
+
+.h2 {
+  text-align: left;
+  color: #333;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  margin-left: 25px;
+}
+
+.second input {
+  margin-right: 230px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 15px;
+  background-color: rgb(244, 242, 242);
+  color: black;
+}
+
+.input:focus {
+  border-color: #0070f3;
+  outline: none;
+}
+
+.button {
+  width: 22%;
+  padding: 12px;
+  background-color: #0070f3;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-left: 23px;
+}
+
+.button:hover {
+  background-color: #005bb5;
+}
+
+.successMessage {
+  color: green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.errorMessage {
+  color: red;
+  text-align: center;
+}
+
+/* Responsive styles for tablets (iPads in landscape and portrait mode) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .body {
+    padding: 20px;
+  }
+
+  .card {
+    margin: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .user_info {
+    margin-top: -83px;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .first, .second {
+    margin: 0px;
+    flex: 1 1 calc(50% - 10px); /* 50% width minus gap */
+  }
+
+  .h2 {
+    margin-left: 15px;
+  }
+
+  .button {
+    width: 40%;
+    margin-left: 0;
+  }
+
+  .input {
+    font-size: 14px;
+  }
+}
+
+/* Responsive styles for smaller tablets and large phones */
+@media (max-width: 600px) {
+  .body {
+    padding: 65px;
+  }
+
+  .user_info {
+    flex-direction: column;
+    gap: 0;
+    margin-top: -80px;
+  }
+
+  .first, .second {
+    margin: 10px 0;
+  }
+
+  .first p, .second p {
+    width: 100%;
+  }
+
+  .button {
+    width: 50%;
+    margin-left: 0;
+  }
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 480px) {
+  .body {
+    padding: 10px;
+  }
+
+  .card {
+    margin: 0;
+  }
+
+  .h2 {
+    margin-left: 10px;
+  }
+
+  .body form {
+    padding: 15px;
+  }
+
+  .button {
+    width: 80%;
+    margin-left: 0;
+  }
+
+  .input {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1250px){
+  .body {
+    padding: 65px;
+  }
+
+  .user_info {
+    flex-direction: column;
+    gap: 0;
+    margin-top: -80px;
+  }
+
+  .first, .second {
+    margin: 10px 0;
+  }
+
+  .first p, .second p {
+    width: 100%;
+  }
+
+  .button {
+    width: 50%;
+    margin-left: 0;
+  }
+}

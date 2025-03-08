@@ -1,0 +1,69 @@
+.container {
+    background-color: #dfecf6;
+    padding: 45px 195px 85px;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    background-color: white;
+    margin: 0px -50px;
+    padding-top: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 39.2);
+}
+
+.tp {
+    background-color: #93ccf7;
+    height: 150px;
+}
+
+.container form {
+    max-width: 1000px;
+    padding: 20px 45px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.user_info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    background-color: white;
+    margin-top: -70px;
+    padding: 10px;
+}
+
+.tittle {
+    color: #333;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 15px;
+}
+
+.container label {
+    font-size: 14px;
+    color: #555;
+    margin-top: 8px;
+  }
+  
+.container input {
+    width: 100%;
+    padding: 7px;
+    margin: 0px 0 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 15px;
+    background-color: rgb(244, 242, 242);
+    color: black;
+  }
+
+  .container button{
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }

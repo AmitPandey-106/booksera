@@ -1,0 +1,106 @@
+.container {
+  background-color: #dfecf6;
+  padding: 45px 195px 85px;
+  width: 100%;
+    font-family: Arial, sans-serif;
+    min-height: 100vh; 
+  }
+
+  .card {
+    background-color: white;
+    margin: 0px -50px;
+    padding-top: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 39.2);
+  }
+
+  .tp {
+    background-color: #93ccf7;
+    height: 150px;
+  }
+
+  .container form {
+    max-width: 1000px;
+    padding: 20px 45px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+
+  .user_info {
+    background-color: white;
+    margin-top: -70px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .title {
+    text-align: left;
+    color: #333;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 25px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .field {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .label {
+    font-size: 14px;
+    color: #555;
+    margin-top: 8px;
+    text-align: left;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px;
+    margin: 0px 0 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 15px;
+    background-color: rgb(244, 242, 242);
+    color: black;
+  }
+  .textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .textarea {
+    resize: none;
+  }
+  
+  .submitButton {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submitButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .success {
+    color: green;
+    text-align: center;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+  }
+  
