@@ -81,70 +81,88 @@ exports.handleBorrowRequest = async (req, res) => {
   const { requestId, action } = req.body; // action can be 'approve' or 'reject'
 
   try {
-    // Find the borrow request and populate necessary fields
-    const borrowRequest = await BorrowRequest.findById(requestId).populate('book');
-    if (!borrowRequest) return res.status(404).json({ message: 'Request not found' });
+    // Check if the request is from BorrowRequest or Waitlist
+    let request = await BorrowRequest.findById(requestId).populate('book');
+    let requestType = "borrow"; // Default to borrow request
 
-    const book = await ClgBook.findById(borrowRequest.book._id);
+    if (!request) {
+      request = await Waitlist.findById(requestId).populate('book');
+      requestType = "waitlist"; // Change type to waitlist
+    }
+
+    if (!request) {
+      return res.status(404).json({ message: 'Request not found' });
+    }
+
+    const book = await ClgBook.findById(request.book._id);
     if (!book) return res.status(400).json({ message: 'Book not found' });
 
     // Reject the request
     if (action === 'reject') {
-      // Update the book quantity only if it was decreased earlier
+      // Update book quantity if it was decreased earlier
       book.TOTAL_VOL += 1;
       await book.save();
 
-      // Delete the borrow request after rejecting
-      await BorrowRequest.findByIdAndDelete(requestId);
+      // Delete the request from the correct collection
+      if (requestType === "borrow") {
+        await BorrowRequest.findByIdAndDelete(requestId);
+      } else {
+        await Waitlist.findByIdAndDelete(requestId);
+      }
 
-      return res.json({ message: 'Borrow request rejected and removed from records' });
+      return res.json({ message: `${requestType} request rejected and removed from records` });
     }
 
     // Approve the request
     if (action === 'approve') {
-      if (book.TOTAL_VOL < 0) {
+      if (book.TOTAL_VOL <= 0) {
         return res.status(400).json({ message: 'Book unavailable' });
       }
       await book.save();
 
-      // Calculate due date (7 days from now)
+      // Calculate due date (2 days from now)
       const borrowDate = moment().utc().toDate();
       const dueDate = moment().utc().add(2, 'days').toDate();
 
       const borrowedBook = new BorrowedBook({
-        book: borrowRequest.book._id,
-        user: borrowRequest.user,
+        book: request.book._id,
+        user: request.user,
         status: 'confirmed',
-        title: borrowRequest.book.TITLE,
+        title: request.book.TITLE,
         borrowDate,
         dueDate,
       });
       await borrowedBook.save();
 
-      // Update the User table: Add borrowed book to user's borrowedBooks array
-      const user = await User.findOne({ profileId: borrowRequest.user });
+      // Update the User table
+      const user = await User.findOne({ profileId: request.user });
       if (!user) return res.status(404).json({ message: 'User not found' });
 
       user.borrowedBooks.push(borrowedBook._id);
 
       // Add to BooksHistory
       user.BooksHistory.push({
-        book: borrowRequest.book._id,
-        title: borrowRequest.book.TITLE,
-        borrowDate: borrowDate,
-        dueDate: dueDate,
+        book: request.book._id,
+        title: request.book.TITLE,
+        borrowDate,
+        dueDate,
         status: 'accepted',
       });
       await user.save();
 
-      // Delete the borrow request after approval
-      await BorrowRequest.findByIdAndDelete(requestId);
+      // Delete the request from the correct collection
+      if (requestType === "borrow") {
+        await BorrowRequest.findByIdAndDelete(requestId);
+      } else {
+        await Waitlist.findByIdAndDelete(requestId);
+      }
 
-      return res.json({ message: 'Borrow request approved and added to user history' });
+      return res.json({ message: `${requestType} request approved and added to user history` });
     }
+
   } catch (error) {
     console.error("Error handling borrow request:", error);
-    res.status(404).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 

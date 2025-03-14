@@ -9,6 +9,7 @@ import NextNProgress from 'nextjs-progressbar';
 export default function ProfileForm({ initialError }) {
   const [error, setError] = useState(initialError || '');
   const [success, setSuccess] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const {authUser} = useContext(AuthContext)
   const [formData, setFormData] = useState({
     userId: authUser?.id || '', 
@@ -73,6 +74,7 @@ export default function ProfileForm({ initialError }) {
     e.preventDefault();
     setError(''); // Reset error message
     setSuccess(''); // Reset success message
+    setIsLoading(true);
 
     try {
       const res = await fetch(`${backendUrl}/user-profile-edit`, {
@@ -85,13 +87,17 @@ export default function ProfileForm({ initialError }) {
       if (res.status === 200) {
         setSuccess(data.message || 'Profile updated successfully!');
         window.location.reload();
+
       } else {
         setError(data.message || 'Something went wrong.');
+        
       }
     } catch (error) {
       console.error('Error submitting form:', error);
       setError('An error occurred. Please try again later.');
+      
     }
+    setIsLoading(false);
   };
 
   return (
@@ -138,16 +144,29 @@ export default function ProfileForm({ initialError }) {
       <p>Phone Number</p> 
       <input className={styles.input} type="tel" name="phoneNumber" placeholder="Phone Number" onChange={handleChange} value={formData.phoneNumber} />
       <p>Student ID</p> 
-      <input className={styles.input} type="text" name="studentID" placeholder="Student ID" onChange={handleChange} value={formData.studentID} />
+      <input className={styles.input} type="text" name="studentID" placeholder="Student ID should be in LowerCase" onChange={handleChange} value={formData.studentID} />
       <p>Department</p> 
-      <input className={styles.input} type="text" name="department" placeholder="Department" onChange={handleChange} value={formData.department} />
-      <p>Current Year</p> 
-      <input className={styles.input} type="text" name="yearLevel" placeholder="Year Level" onChange={handleChange} value={formData.yearLevel} />
+      <select className={styles.input} name="department" onChange={handleChange} value={formData.department}>
+        <option value="">Select your Department</option>
+        <option value="IT">IT</option>
+        <option value="CS">CS</option>
+        <option value="AIDS">AIDS</option>
+      </select>
+      {/* <input className={styles.input} type="text" name="department" placeholder="Department" onChange={handleChange} value={formData.department} /> */}
+      <p>Current Year</p>
+      <select className={styles.input} name="yearLevel" onChange={handleChange} value={formData.yearLevel}>
+        <option value="">Select your Year</option>
+        <option value="first">First Year</option>
+        <option value="second">Second Year</option>
+        <option value="third">Third Year</option>
+        <option value="fourth">Fourth Year</option>
+      </select> 
+      {/* <input className={styles.input} type="text" name="yearLevel" placeholder="Year Level" onChange={handleChange} value={formData.yearLevel} /> */}
       <p>Library Card Number  </p> 
       <input className={styles.input} type="text" name="libraryCardNumber" placeholder="Library Card Number" onChange={handleChange} value={formData.libraryCardNumber} />
       </div>
       </div>
-      <button className={styles.button} type="submit">Submit Profile</button>
+      <button className={styles.button} type="submit" disabled={isLoading}>{isLoading ? 'Submitting...' : 'Submit Profile'}</button>
     </form>
     </div>
     </div>

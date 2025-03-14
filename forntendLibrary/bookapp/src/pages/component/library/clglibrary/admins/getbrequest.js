@@ -54,6 +54,7 @@ export default function AdminBorrowRequests() {
       });
       const data = await response.json();
       setRequests((prev) => prev.filter((req) => req._id !== requestId));
+      setWaitlist((prev) => prev.filter((item) => item._id !== requestId));
       alert(data.message);
       window.location.reload()
     } catch (error) {
