@@ -22,8 +22,8 @@ const addmember = async (req, res, next) => {
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'gowdadarshan694@gmail.com',
-                pass: 'tqhemvyrrerrjikr'  // Make sure you handle sensitive data securely (e.g., environment variables)
+                user: 'booksera01@gmail.com',
+                pass: 'hwyksmotrwilckve'  // Make sure you handle sensitive data securely (e.g., environment variables)
             }
         });
 
